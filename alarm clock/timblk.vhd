@@ -41,13 +41,13 @@ architecture time of timblk is
   		  	tim_sec1 = "0000";
   		  	tim_sec10 <= tim_sec10 + 1;
 ---------------- 00:00:x0 ----------------
-  		  elsif tim_secs10 < 6 then
-  		  	tim_secs10 =  "000";
-  		  	tim_mins1 <= tim_mins1 + 1;
+  		  	 	if tim_secs10 < 6 then
+  				  tim_secs10 =  "000";
+  		  		  tim_mins1 <= tim_mins1 + 1;
 ---------------- 00:0x:00 ----------------
-  		  elsif tim_secs10 < 6 then
-  		  	tim_secs10 =  "000";
-  		  	tim_mins1 <= tim_mins1 + 1;
+  		  			if tim_mins1 < 9 then
+  		  		 	  tim_min1 =  "0000";
+  		  			  tim_mins10 <= tim_mins10 + 1;
 
   		  end if;
   		end if;
