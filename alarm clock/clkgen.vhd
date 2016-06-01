@@ -78,4 +78,4 @@ clk1s <= '0';
 	end if;
 end process;
 
-end behave;
+end architecture behave;
