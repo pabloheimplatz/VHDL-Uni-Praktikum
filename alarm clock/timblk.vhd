@@ -66,10 +66,9 @@ architecture time of timblk is
 	  		  		 	 	  	  tim_hrs1 =  "0000";
 	  		  				  	  tim_hrs10 <= tim_hrs10 + 1;
 					---------------- 12:00:00 ----------------
-	  		  						if tim_hrs10 = 1 and tim_hrs1 = 2 then
-	  		  		 	 	  		  tim_hrs10 =  "00";
-	  		  		 	 	  		  tim_hrs1 = "0000";
-	  		  		 	 	  		end if;
+	  		  					elsif tim_hrs10 = 1 and tim_hrs1 = 2 then
+	  		  		 	 	  	  tim_hrs10 =  "00";
+	  		  		 	 	  	  tim_hrs1 = "0000";
 	  		  		 	 	  	end if;
 	  		  		 	 	end if;
 	  		  		 	end if;
@@ -79,26 +78,32 @@ architecture time of timblk is
   		end if;
   	end process;
 
-  	time_one: process (reset, clk500ms, clk1s, set_time, set_mins, set_hrs)
+  	time_settings: process (clk500ms, set_time, set_hrs)
   	begin
-  		if set_time='1' then
-  		  tim_secs1 <= '0000';
-  		  tim_secs10 <= '000';
-  		  set_time ='1';
-  		end if;
-   	end process;
-
-  	time_hrs: process (clk500ms, set_time, set_hrs)
-  	begin
-  		if set_time='1' and set_hrs'1' then
-  		-- TO DO
-  		end if;
-   	end process;
-
-   	 time_mins: process (clk500ms, set_time, set_mins)
-  	begin
-  		if set_time='0' and set_mins='1' then
-  		-- TO DO
+  		if set_time= '1' 
+			tim_secs1 <= "0000";
+  			tim_secs10 <= "000";
+  			if rising_edge(clk500ms) then
+	  			if set_hrs= '1' then
+	  				tim_hrs1 <=  tim_hrs1 + 1;
+	  				if tim_hrs1 = 9 then
+	  					tim_hrs1 =  "0000";
+						tim_hrs10 <= tim_hrs10 + 1;
+					elsif tim_hrs10 = 1 and tim_hrs1 = 2 then
+						tim_hrs10 =  "00";
+						tim_hrs1 = "0000";
+					end if;
+	  			elsif set_mins= '1' then
+	  				tim_mins1 <= tim_mins1 + 1;
+	  				if tim_mins1 = 9 then
+  		  		 	  tim_mins1 =  "0000";
+  		  			  tim_mins10 <= tim_mins10 + 1;
+  		  				if tim_mins10 = 5
+  		  		 	 	  tim_mins10 =  "000";
+  		  		 	 	end if;
+	  		  		end if;
+	  		  	end if;
+  			end if;
   		end if;
    	end process;
 
