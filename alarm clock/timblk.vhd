@@ -35,21 +35,40 @@ architecture time of timblk is
   begin
   	time_null: process (reset, clk1s, set_time)
   	begin
- ---------------- 00:00:0x ----------------
   		if set_time='0' then
-  		  if tim_secs1 < 9 then
-  		  	tim_sec1 = "0000";
-  		  	tim_sec10 <= tim_sec10 + 1;
----------------- 00:00:x0 ----------------
-  		  	 	if tim_secs10 < 6 then
-  				  tim_secs10 =  "000";
-  		  		  tim_mins1 <= tim_mins1 + 1;
----------------- 00:0x:00 ----------------
-  		  			if tim_mins1 < 9 then
-  		  		 	  tim_min1 =  "0000";
-  		  			  tim_mins10 <= tim_mins10 + 1;
-
-  		  end if;
+  			if rising_edge(clk1s) then
+  			  tim_secs1 = tim_secs1 + 1;
+---------------- 00:00:09 ----------------
+		  		 if tim_secs1 = 9 then
+		  		  	tim_secs1 = "0000";
+		  		  	tim_secs10 <= tim_secs10 + 1;
+	---------------- 00:00:59 ----------------
+	  		  	 	if tim_secs10 = 5 and tim_secs1 = 9 then
+	  				  tim_secs10 =  "000";
+	  		  		  tim_mins1 <= tim_mins1 + 1;
+	---------------- 00:09:00 ----------------
+	  		  			if tim_mins1 = 9 then
+	  		  		 	  tim_mins1 =  "0000";
+	  		  			  tim_mins10 <= tim_mins10 + 1;
+	---------------- 00:59:00 ----------------
+	  		  				if tim_mins10 = 5 and tim_mins1 = 9 then
+	  		  		 	 	  tim_mins10 =  "000";
+	  		  				  tim_hrs1 <= tim_hrs1 + 1;
+	---------------- 09:00:00 ----------------
+	  		  					if tim_hrs1 = 9 then
+	  		  		 	 	  	  tim_hrs1 =  "0000";
+	  		  				  	  tim_hrs10 <= tim_hrs10 + 1;
+	---------------- 12:00:00 ----------------
+	  		  						if tim_hrs10 = 1 and tim_hrs1 = 2 then
+	  		  		 	 	  		  tim_hrs10 =  "00";
+	  		  		 	 	  		  tim_hrs1 = "0000";
+	  		  		 	 	  		end if;
+	  		  		 	 	  	end if;
+	  		  		 	 	end if;
+	  		  		 	end if;
+	  		  		end if;
+	  		  	end if;
+  		    end if;
   		end if;
   	end process;
 
