@@ -31,7 +31,6 @@ entity timblk is
 end entity timblk;
 
 architecture time of timblk is
-
   begin
   	time_null: process (reset, clk1s, set_time)
   	begin
