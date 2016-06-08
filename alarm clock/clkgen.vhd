@@ -50,7 +50,7 @@ begin
 	end if;
 end process;
 
--- generate a 500ms clock
+-- generate a 500ms and a 1s clock
 gen500ms: process(reset, tmpclk1ms)
 begin
   	if reset='0' then 
@@ -73,21 +73,5 @@ begin
 		end if;
 	end if;
 end process;
-
--- generate a 1s clock
---gen1s: process(reset, tmpclk1s)
---begin
---  	if reset='0' then 
---      count1s <= 0;
---      tmpclk1s <= '0';
---	elsif tmpclk500ms='1' and tmpclk500ms'event then
---		if(count1s = 50) then
---			tmpclk1s <= not tmpclk1s;
---			count1s <= 0;
---		else
---			count1s <= count1s+50;
---		end if;
---	end if;
--- end process;
 
 end architecture behave;
