@@ -36,14 +36,15 @@ clk500ms <= tmpclk500ms;
 -- generate a 1ms clock
 gen1ms: process(reset, clk1us)
 begin
- tmpclk1ms <= '0';
    if reset='0' then 
       count1ms <= 0;
+      tmpclk1ms <= '0';
    elsif clk1us='1' and clk1us'event then
-      count1ms <= count1ms+1;
-		if(count1ms = 999) then
+		if(count1ms = 499) then
 			tmpclk1ms <= not tmpclk1ms;
 			count1ms <= 0;
+		else
+			count1ms <= count1ms+1;
 		end if;
 	end if;
 end process;
@@ -51,14 +52,15 @@ end process;
 -- generate a 500ms clock
 gen500ms: process(reset, tmpclk1ms)
 begin
-tmpclk500ms <= '0';
-  if reset='0' then 
+  	if reset='0' then 
       count500ms <= 0;
+      tmpclk500ms <= '0';
 	elsif tmpclk1ms='1' and tmpclk1ms'event then
-	count500ms <= count500ms+1;
-		if(count500ms = 499) then
+		if(count500ms = 249) then
 			tmpclk500ms <= not tmpclk500ms;
 			count500ms <= 0;
+		else
+			count500ms <= count500ms+1;
 		end if;
 	end if;
 end process;
@@ -66,14 +68,15 @@ end process;
 -- generate a 1s clock
 gen1s: process(reset, tmpclk1s)
 begin
-clk1s <= '0';
-  if reset='0' then 
+  	if reset='0' then 
       count1s <= 0;
+      tmpclk1s <= '0';
 	elsif tmpclk500ms='1' and tmpclk500ms'event then
-	count1s <= count1s+1;
 		if(count1s = 1) then
 			tmpclk1s <= not tmpclk1s;
 			count1s <= 0;
+		else
+			count1s <= count1s+1;
 		end if;
 	end if;
 end process;

@@ -27,8 +27,9 @@ begin
 	clck: process is
 	begin
 		clk1us <= '1', '0' after timeslot/2;
-		reset <= '1';
 		wait for timeslot;
 	end process clck;
+		reset <= '0', '1' after timeslot/4;
+
 
 end architecture testbench;
