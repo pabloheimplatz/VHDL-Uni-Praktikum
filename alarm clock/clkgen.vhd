@@ -21,7 +21,7 @@ architecture behave of clkgen is
 
 signal count1ms : integer range 0 to 999 := 0;
 signal count500ms : integer range 0 to 499 := 0;
-signal count1s : integer range 0 to 1 := 0;
+signal count1s : integer range 0 to 100 := 0;
 
 signal tmpclk1ms : std_logic; -- tmp clk1ms OUT mapping
 signal tmpclk500ms : std_logic; -- tmp clk500ms OUT mapping
@@ -72,11 +72,11 @@ begin
       count1s <= 0;
       tmpclk1s <= '0';
 	elsif tmpclk500ms='1' and tmpclk500ms'event then
-		if(count1s = 1) then
+		if(count1s = 50) then
 			tmpclk1s <= not tmpclk1s;
 			count1s <= 0;
 		else
-			count1s <= count1s+1;
+			count1s <= count1s+50;
 		end if;
 	end if;
 end process;
