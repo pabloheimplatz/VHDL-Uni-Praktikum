@@ -37,7 +37,7 @@ clk500ms <= tmpclk500ms;
 gen1ms: process(reset, clk1us)
 begin
  tmpclk1ms <= '0';
-   if reset='1' then 
+   if reset='0' then 
       count1ms <= 0;
    elsif clk1us='1' and clk1us'event then
       count1ms <= count1ms+1;
@@ -52,7 +52,7 @@ end process;
 gen500ms: process(reset, tmpclk1ms)
 begin
 tmpclk500ms <= '0';
-  if reset='1' then 
+  if reset='0' then 
       count500ms <= 0;
 	elsif tmpclk1ms='1' and tmpclk1ms'event then
 	count500ms <= count500ms+1;
@@ -67,7 +67,7 @@ end process;
 gen1s: process(reset, tmpclk1s)
 begin
 clk1s <= '0';
-  if reset='1' then 
+  if reset='0' then 
       count1s <= 0;
 	elsif tmpclk500ms='1' and tmpclk500ms'event then
 	count1s <= count1s+1;
