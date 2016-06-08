@@ -36,3 +36,25 @@ entity outmux is
 	seldgt		: out std_logic_vector (5 downto 0);  --digit lines
 	decoded		: out std_logic_vector (6 downto 0)); --7 Seg. output
 end entity outmux;
+
+architecture behave of outmux is
+
+begin
+
+	check_alarm: process(reset, clk1ms, set_alarm)
+	begin
+		if reset = '0' then
+			-- reset fall
+		
+		elsif set_alarm = '1' then
+			-- aktuelle Alarm Zeit anzeigen
+
+		else
+			-- Uhrzeit zeigen bei set_alarm = '0'
+
+		end if;
+	end process;
+
+	-- maybe more TO DOs
+
+end architecture behave;
