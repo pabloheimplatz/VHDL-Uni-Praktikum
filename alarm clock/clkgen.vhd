@@ -62,6 +62,7 @@ begin
 		if(count500ms = 249) then
 			tmpclk500ms <= not tmpclk500ms;
 			count500ms <= 0;
+			count1s <= count1s+1;
 		else
 			count500ms <= count500ms+1;
 			count1s <= count1s+1;
