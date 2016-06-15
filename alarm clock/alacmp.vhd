@@ -24,9 +24,9 @@ architecture alarm_time_compare of alacmp is
 	begin
 	compare_time: process(ala_mins1, ala_mins10, ala_hrs1, ala_hrs10, tim_mins1, tim_mins10, tim_hrs1, tim_hrs10)
 	begin
-		compare = '0';
+		compare <= '0';
 		if ala_mins1 = tim_mins1 and ala_mins10 = tim_mins10 and ala_hrs1 = tim_hrs1 and ala_hrs10 = tim_hrs10 then
-			compare = '1';
+			compare <= '1';
 		end if;
 	end process;
 	
