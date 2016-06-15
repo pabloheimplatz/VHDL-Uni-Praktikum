@@ -153,7 +153,7 @@ begin
 
 	alablk_mapping: alablk port map(reset, clk500ms, set_alarm, set_mins, set_hrs, ala_mins1, ala_mins10, ala_hrs1, ala_hrs10);
 
-	timblk_mapping: timblk port map(reset, clk500ms, clk1s, set_time, set_mins, set_hrs, tim_secs1, tim_secs10, tim_mins1, tim_mins10, tim_hrs1, tim_hrs10, ala_mins1, ala_mins10, ala_hrs1, ala_hrs10);
+	timblk_mapping: timblk port map(reset, clk500ms, clk1s, set_time, set_mins, set_hrs, tim_secs1, tim_secs10, tim_mins1, tim_mins10, tim_hrs1, tim_hrs10);
 
 end architecture behave;
 
