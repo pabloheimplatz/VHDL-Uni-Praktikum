@@ -45,7 +45,6 @@ architecture behave of outmux is
   end component bcddec;
 	
   signal bcdin	 : std_logic_vector (3 downto 0);  --BCD input      MSB-left
-  signal decoded : std_logic_vector (6 downto 0); --7 Seg. output  a..g
 
   begin 
  	bcddec_comp: bcddec port map (bcdin, decoded);
@@ -95,6 +94,6 @@ architecture behave of outmux is
 					end case;
 			end if;
 		end if;
-	end process;
+	end process check_alarm;
 
 end architecture behave;
