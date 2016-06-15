@@ -75,7 +75,7 @@ architecture time of timblk is
 	  		  	end if;
   		    end if;
   		end if;
-  	end process;
+  	end process time_null;
 
   	time_settings: process (clk500ms, set_time, set_hrs)
   	begin
@@ -104,6 +104,6 @@ architecture time of timblk is
 	  		  	end if;
   			end if;
   		end if;
-   	end process;
+   	end process time_settings;
 
 end architecture time;
