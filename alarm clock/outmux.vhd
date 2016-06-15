@@ -43,18 +43,42 @@ begin
 
 	check_alarm: process(reset, clk1ms, set_alarm)
 	begin
-		if reset = '0' then
-			-- reset fall
+		if rising_edge(clk1ms) then
+			seldgt <= seldgt(4 downto 0) & seldgt(5);
+			if reset = '0' then
+				-- reset case
+					case seldgt is
+					when "00000" => decoded <= "1111110";
+					when "00001" => decoded <= "1111110";
+					when "00010" => decoded <= "1111110";
+					when "00100" => decoded <= "1111110";
+					when "01000" => decoded <= "1111110";
+					when "10000" => decoded <= "1111110";
+					when others => decoded <= "1111110";
+					end case;
 		
-		elsif set_alarm = '1' then
-			-- aktuelle Alarm Zeit anzeigen
+			elsif set_alarm = '1' then
+				-- aktuelle Alarm Zeit anzeigen
 
-		else
-			-- Uhrzeit zeigen bei set_alarm = '0'
+
+			else
+				-- Uhrzeit zeigen bei set_alarm = '0'
+			end if;
 
 		end if;
 	end process;
 
-	-- maybe more TO DOs
-
+	-- cases for seldgt im extra Prozess
+	assign_seldgt: process(tim_secs1, tim_secs10, tim_mins1, tim_mins10, tim_hrs1, tim_hrs10)
+	begin
+	case seldgt is
+	when "00000" =>
+	when "00001" =>
+	when "00010" =>
+	when "00100" =>
+	when "01000" =>
+	when "10000" =>
+	when others =>
+	end case;
+	end process;
 end architecture behave;
