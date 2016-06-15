@@ -29,16 +29,16 @@ architecture alarm of alablk is
 				ala_mins10 <= "000";
 				ala_hrs1 <= "0000";
 				ala_hrs10 <= "00";
-			elsif set_alarm='1' then
+			elsif set_alarm ='1' then
 				if rising_edge(clk500ms) then
-					if set_hrs '1' then
+					if set_hrs = '1' then
 						ala_hrs1 =  "0000";
 						ala_hrs10 <= ala_hrs10 + 1;
 					elsif ala_hrs10 = 1 and ala_hrs1 = 2 then
 						ala_hrs10 =  "00";
 						ala_hrs1 = "0000";
 					end if;
-	  			elsif set_mins= '1' then
+	  			elsif set_mins = '1' then
 	  				ala_mins1 <= ala_mins1 + 1;
 	  				if ala_mins1 = 9 then
   		  		 	  ala_mins1 =  "0000";
