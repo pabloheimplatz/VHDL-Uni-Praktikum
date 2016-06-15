@@ -45,7 +45,7 @@ architecture behave of outmux is
   end component bcddec;
 	
   signal bcdin	 : std_logic_vector (3 downto 0);  --BCD input      MSB-left
-  signal counter : std_logic_vector (6 downto 0)); --7 Seg. output
+  signal counter : std_logic_vector (6 downto 0); --7 Seg. output
  
   begin 
  	bcddec_comp: bcddec port map (bcdin, decoded);
