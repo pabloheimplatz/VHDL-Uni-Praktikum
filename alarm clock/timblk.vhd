@@ -49,7 +49,7 @@ architecture time of timblk is
 		  		  	tim_secs1 <= "0000";
 		  		  	tim_secs10 <= tim_secs10 + 1;
 	---------------- 00:00:59 ----------------
-	  		  	 	if tim_secs10 = 5
+	  		  	 	if tim_secs10 = 5 then
 	  				  tim_secs10 <=  "000";
 	  		  		  tim_mins1 <= tim_mins1 + 1;
 		---------------- 00:09:00 ----------------
@@ -57,7 +57,7 @@ architecture time of timblk is
 	  		  		 	  tim_mins1 <=  "0000";
 	  		  			  tim_mins10 <= tim_mins10 + 1;
 			---------------- 00:59:00 ----------------
-	  		  				if tim_mins10 = 5
+	  		  				if tim_mins10 = 5 then
 	  		  		 	 	  tim_mins10 <=  "000";
 	  		  				  tim_hrs1 <= tim_hrs1 + 1;
 				---------------- 09:00:00 ----------------
@@ -97,7 +97,7 @@ architecture time of timblk is
 	  				if tim_mins1 = 9 then
   		  		 	  tim_mins1 <=  "0000";
   		  			  tim_mins10 <= tim_mins10 + 1;
-  		  				if tim_mins10 = 5
+  		  				if tim_mins10 = 5 then
   		  		 	 	  tim_mins10 <=  "000";
   		  		 	 	end if;
 	  		  		end if;
