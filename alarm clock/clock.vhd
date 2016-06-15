@@ -127,7 +127,7 @@ end component alafsm;
 
 signal clk1ms		: std_logic;	--1KHz clock		R
 signal clk500ms	: std_logic;	--2Hz  clock		R
-signal clk1s		: std_logic);	--1Hz  clock		R)
+signal clk1s		: std_logic;	--1Hz  clock		R)
 signal tim_secs1	: unsigned (3 downto 0);	--		BCD
 signal tim_secs10	: unsigned (2 downto 0);	--		BCD
 signal tim_mins1	: unsigned (3 downto 0);	--		BCD
@@ -138,7 +138,7 @@ signal ala_mins1	: unsigned (3 downto 0);	--		BCD
 signal ala_mins10	: unsigned (2 downto 0);	--		BCD
 signal ala_hrs1	: unsigned (3 downto 0);	--		BCD
 signal ala_hrs10	:  unsigned (1 downto 0);	--		BCD
-signal compare		:  std_logic);	--is alarm time		H)
+signal compare		:  std_logic;	--is alarm time		H)
 
 begin
 	outmux_mapping: outmux port map (reset, clk1ms, set_alarm, tim_secs1, tim_secs10, tim_mins1, tim_mins10, tim_hrs1, tim_hrs10, ala_mins1, ala_mins10, ala_hrs1, ala_hrs10, seldgt, decoded);
