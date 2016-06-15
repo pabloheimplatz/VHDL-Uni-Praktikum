@@ -39,7 +39,17 @@ end entity outmux;
 
 architecture behave of outmux is
 
-begin
+  component bcddec is
+  port( bcdin	: in  std_logic_vector (3 downto 0);  --BCD input      MSB-left
+	decoded	: out std_logic_vector (6 downto 0)); --7 Seg. output  a..g
+  end component bcddec;
+	
+  signal bcdin	 : std_logic_vector (3 downto 0);  --BCD input      MSB-left
+  signal decoded : std_logic_vector (6 downto 0); --7 Seg. output  a..g
+
+  begin 
+ 	bcddec_comp: bcddec port map (bcdin, decoded);
+
 
 	check_alarm: process(reset, clk1ms, set_alarm)
 	begin
@@ -47,38 +57,44 @@ begin
 			seldgt <= seldgt(4 downto 0) & seldgt(5);
 			if reset = '0' then
 				-- reset case
+					seldgt <= "000000";
+					decoded <= "0000000";
+
 					case seldgt is
-					when "00000" => decoded <= "1111110";
-					when "00001" => decoded <= "1111110";
-					when "00010" => decoded <= "1111110";
-					when "00100" => decoded <= "1111110";
-					when "01000" => decoded <= "1111110";
-					when "10000" => decoded <= "1111110";
-					when others => decoded <= "1111110";
+					when "000001" => bcdin <= "0000";
+					when "000010" => bcdin <= "0000";
+					when "000100" => bcdin <= "0000";
+					when "001000" => bcdin <= "0000";
+					when "010000" => bcdin <= "0000";
+					when "100000" => bcdin <= "0000";
+					when others => bcdin <= "0000";
 					end case;
 		
 			elsif set_alarm = '1' then
 				-- aktuelle Alarm Zeit anzeigen
-
+					case seldgt is
+					when "000001" => bcdin <= "0000";
+					when "000010" => bcdin <= "0000";
+					when "000100" => bcdin <= std_logic_vector(ala_mins1);
+					when "001000" => bcdin <= '0' & std_logic_vector(ala_mins10);
+					when "010000" => bcdin <= std_logic_vector(ala_hrs1);
+					when "010000" => bcdin <= '0' & '0' & std_logic_vector(ala_hrs10);
+					when others => bcdin <= "0000";
+					end case;
 
 			else
 				-- Uhrzeit zeigen bei set_alarm = '0'
+					case seldgt is
+					when "000001" => bcdin <= std_logic_vector(tim_secs1);
+					when "000010" => bcdin <= '0' & std_logic_vector(tim_secs10)
+					when "000100" => bcdin <= std_logic_vector(tim_mins1);
+					when "001000" => bcdin <= '0' & std_logic_vector(tim_mins10);
+					when "010000" => bcdin <= std_logic_vector(tim_hrs1);
+					when "010000" => bcdin <= '0' & '0' & std_logic_vector(tim_hrs10);
+					when others => bcdin <= "0000";
+					end case;
 			end if;
-
 		end if;
 	end process;
 
-	-- cases for seldgt im extra Prozess
-	assign_seldgt: process(tim_secs1, tim_secs10, tim_mins1, tim_mins10, tim_hrs1, tim_hrs10)
-	begin
-	case seldgt is
-	when "00000" =>
-	when "00001" =>
-	when "00010" =>
-	when "00100" =>
-	when "01000" =>
-	when "10000" =>
-	when others =>
-	end case;
-	end process;
 end architecture behave;
