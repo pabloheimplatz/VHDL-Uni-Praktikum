@@ -45,7 +45,8 @@ architecture behave of outmux is
   end component bcddec;
 	
   signal bcdin	 : std_logic_vector (3 downto 0);  --BCD input      MSB-left
-
+  signal counter : std_logic_vector (6 downto 0)); --7 Seg. output
+ 
   begin 
  	bcddec_comp: bcddec port map (bcdin, decoded);
 
@@ -53,13 +54,14 @@ architecture behave of outmux is
 	check_alarm: process(reset, clk1ms, set_alarm)
 	begin
 		if rising_edge(clk1ms) then
-			seldgt <= seldgt(4 downto 0) & seldgt(5);
+			counter <= seldgt;
+			counter <= counter(4 downto 0) & counter(5);
 			if reset = '0' then
 				-- reset case
-					seldgt <= "000000";
+					counter <= "000000";
 					decoded <= "0000000";
 
-					case seldgt is
+					case counter is
 					when "000001" => bcdin <= "0000";
 					when "000010" => bcdin <= "0000";
 					when "000100" => bcdin <= "0000";
@@ -71,7 +73,7 @@ architecture behave of outmux is
 		
 			elsif set_alarm = '1' then
 				-- aktuelle Alarm Zeit anzeigen
-					case seldgt is
+					case counter is
 					when "000001" => bcdin <= "0000";
 					when "000010" => bcdin <= "0000";
 					when "000100" => bcdin <= std_logic_vector(ala_mins1);
@@ -83,7 +85,7 @@ architecture behave of outmux is
 
 			else
 				-- Uhrzeit zeigen bei set_alarm = '0'
-					case seldgt is
+					case counter is
 					when "000001" => bcdin <= std_logic_vector(tim_secs1);
 					when "000010" => bcdin <= '0' & std_logic_vector(tim_secs10);
 					when "000100" => bcdin <= std_logic_vector(tim_mins1);
