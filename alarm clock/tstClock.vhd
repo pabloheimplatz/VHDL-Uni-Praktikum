@@ -40,7 +40,7 @@ architecture stimuli of tstClock is
 	clk1us		: in  std_logic;	-- 1 MHz clock		R
 	dcfsig		: in  std_logic;	-- DCF77 signal
 	set_time	: in  std_logic;	-- Set-Time   button	H
-	set_ala		: in  std_logic;	-- Set-Alarm  button	H
+	set_alarm		: in  std_logic;	-- Set-Alarm  button	H
 	set_mins	: in  std_logic;	-- Set-Min    button	H
 	set_hrs		: in  std_logic;	-- Set-Hour   button	H
 	alarm_tog	: in  std_logic;	-- alarm      button	H
