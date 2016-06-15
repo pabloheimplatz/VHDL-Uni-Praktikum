@@ -79,7 +79,7 @@ architecture time of timblk is
 
   	time_settings: process (clk500ms, set_time, set_hrs)
   	begin
-  		if set_time = '1' 
+  		if set_time = '1' then
 			tim_secs1 <= "0000";
   			tim_secs10 <= "000";
   			if rising_edge(clk500ms) then
