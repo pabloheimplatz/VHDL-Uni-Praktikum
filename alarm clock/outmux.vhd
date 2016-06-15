@@ -79,7 +79,7 @@ architecture behave of outmux is
 					when "000100" => bcdin <= std_logic_vector(ala_mins1);
 					when "001000" => bcdin <= '0' & std_logic_vector(ala_mins10);
 					when "010000" => bcdin <= std_logic_vector(ala_hrs1);
-					when "010000" => bcdin <= '0' & '0' & std_logic_vector(ala_hrs10);
+					when "100000" => bcdin <= '0' & '0' & std_logic_vector(ala_hrs10);
 					when others => bcdin <= "0000";
 					end case;
 
