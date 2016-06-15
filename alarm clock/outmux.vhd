@@ -54,7 +54,7 @@ architecture behave of outmux is
 	check_alarm: process(reset, clk1ms, set_alarm)
 	begin
 		if rising_edge(clk1ms) then
-			counter <= seldgt;
+			seldgt <= counter;
 			counter <= counter(4 downto 0) & counter(5);
 			if reset = '0' then
 				-- reset case
