@@ -43,7 +43,7 @@ architecture time of timblk is
   	  	 tim_hrs10 <= "00";
   	  elsif set_time='0' then
   			if rising_edge(clk1s) then
-  			  tim_secs1 = tim_secs1 + 1;
+  			  tim_secs1 = tim_secs1 + '1';
 ---------------- 00:00:09 ----------------
 		  		 if tim_secs1 = 9 then
 		  		  	tim_secs1 = "0000";
