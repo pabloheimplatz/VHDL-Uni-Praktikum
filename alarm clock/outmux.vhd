@@ -49,29 +49,19 @@ architecture behave of outmux is
  
   begin 
  	bcddec_comp: bcddec port map (bcdin, decoded);
- 	
+
+ 	seldgt <= counter;
+
 	check_alarm: process(reset, clk1ms, set_alarm)
 	begin
-
-		if rising_edge(clk1ms) then
-			seldgt <= counter;
+		if reset = '0' then
+			-- reset case
+			counter <= "000001";
+			decoded <= "0000000";
+		elsif rising_edge(clk1ms) then
 			counter <= counter(4 downto 0) & counter(5);
-			if reset = '0' then
-				-- reset case
-					counter <= "000000";
-					decoded <= "0000000";
 
-					case counter is
-					when "000001" => bcdin <= "0000";
-					when "000010" => bcdin <= "0000";
-					when "000100" => bcdin <= "0000";
-					when "001000" => bcdin <= "0000";
-					when "010000" => bcdin <= "0000";
-					when "100000" => bcdin <= "0000";
-					when others => bcdin <= "0000";
-					end case;
-		
-			elsif set_alarm = '1' then
+			if set_alarm = '1' then
 				-- aktuelle Alarm Zeit anzeigen
 					case counter is
 					when "000001" => bcdin <= "0000";
