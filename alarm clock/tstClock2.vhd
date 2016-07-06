@@ -57,6 +57,9 @@ begin
   -- clock mapping
   mapping : clock port map (reset, clk1us, dcfsig, set_time, set_alarm, set_mins, set_hrs, alarm_tog, disp_date, disp_wday, seldgt, decoded, alarm_act, dcfsok);
   
+  reset <= '0', '1' after tClk/4;
+
+
   -- Clock
   clck: process is
   begin
