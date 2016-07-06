@@ -32,7 +32,7 @@ end entity timblk;
 
 architecture time of timblk is
   begin
-  	time_null: process (reset, clk1s, set_time)
+  	time_null: process (reset, clk500ms, clk1s, set_time)
   	begin
   	  if reset = '0' then
   	  	 tim_secs1 <= "0000";
@@ -74,12 +74,7 @@ architecture time of timblk is
 	  		  		end if;
 	  		  	end if;
   		    end if;
-  		end if;
-  	end process time_null;
-
-  	time_settings: process (clk500ms, set_time, set_hrs)
-  	begin
-  		if set_time = '1' then
+  		elsif set_time = '1' then
 			tim_secs1 <= "0000";
   			tim_secs10 <= "000";
   			if rising_edge(clk500ms) then
@@ -104,6 +99,7 @@ architecture time of timblk is
 	  		  	end if;
   			end if;
   		end if;
-   	end process time_settings;
+		end if;
+  	end process time_null;
 
 end architecture time;
