@@ -58,7 +58,9 @@ begin
   mapping : clock port map (reset, clk1us, dcfsig, set_time, set_alarm, set_mins, set_hrs, alarm_tog, disp_date, disp_wday, seldgt, decoded, alarm_act, dcfsok);
   
   reset <= '0', '1' after tClk/4;
-
+     
+  set_time <= '0';
+  set_alarm <= '0';
 
   -- Clock
   clck: process is
@@ -68,13 +70,11 @@ begin
   end process clck;
 
   -- Testfall - Uhr stellen
-  test1: process is
-  begin
-    if reset = '0' then
-      set_time <= '0';
-      set_alarm <= '0';
-    end if;
-  end process test1; 
+  --test1: process is
+  --begin
+    --if reset = '0' then
+  --  end if;
+  --end process test1; 
 
 end architecture stimuli;
 
