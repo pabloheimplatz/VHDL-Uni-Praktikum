@@ -70,8 +70,10 @@ begin
   -- Testfall - Uhr stellen
   test1: process is
   begin
-    set_time <= '0';
-    set_alarm <= '0';
+    if reset = '0' then
+      set_time <= '0';
+      set_alarm <= '0';
+    end if;
   end process test1; 
 
 end architecture stimuli;
