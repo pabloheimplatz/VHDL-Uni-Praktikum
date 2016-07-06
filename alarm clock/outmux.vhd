@@ -49,10 +49,11 @@ architecture behave of outmux is
  
   begin 
  	bcddec_comp: bcddec port map (bcdin, decoded);
-
+	set_alarm <= '0'; -- maybe??????
 
 	check_alarm: process(reset, clk1ms, set_alarm)
 	begin
+
 		if rising_edge(clk1ms) then
 			seldgt <= counter;
 			counter <= counter(4 downto 0) & counter(5);
