@@ -64,10 +64,11 @@ begin
     wait for tClk;
   end process clck;
 
-  -- Testfall 1
-  --test1: process is
-  --begin
-    
+  -- Testfall - Uhr stellen
+  test1: process is
+  begin
+    set_time <= '0';
+  end process 
 
 end architecture stimuli;
 

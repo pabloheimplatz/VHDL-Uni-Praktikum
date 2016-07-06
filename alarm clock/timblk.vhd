@@ -99,7 +99,6 @@ architecture time of timblk is
 	  		  	end if;
   			end if;
   		end if;
-		end if;
-  	end process time_null;
+  end process time_null;
 
 end architecture time;
