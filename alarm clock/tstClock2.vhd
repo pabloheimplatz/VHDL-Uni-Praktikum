@@ -68,10 +68,11 @@ begin
   end process clck;
 
   -- Testfall - Uhr stellen
-  --test1: process is
-  --begin
-  --  set_time <= '0';
-  --end process 
+  test1: process is
+  begin
+    set_time <= '0';
+    set_alarm <= '0';
+  end process 
 
 end architecture stimuli;
 
