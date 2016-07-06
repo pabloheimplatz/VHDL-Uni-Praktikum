@@ -56,7 +56,7 @@ architecture behave of outmux is
 	begin
 		if reset = '0' then
 			-- reset case
-			counter <= "000001";
+			counter <= "100000";
 			bcdin <= "0000";
 		elsif rising_edge(clk1ms) then
 			counter <= counter(4 downto 0) & counter(5);
