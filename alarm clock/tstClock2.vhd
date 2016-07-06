@@ -72,7 +72,7 @@ begin
   begin
     set_time <= '0';
     set_alarm <= '0';
-  end process 
+  end process test1; 
 
 end architecture stimuli;
 
