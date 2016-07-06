@@ -64,24 +64,24 @@ architecture behave of outmux is
 			if set_alarm = '1' then
 				-- aktuelle Alarm Zeit anzeigen
 					case counter is
+					when "100000" => bcdin <= "0000";
 					when "000001" => bcdin <= "0000";
-					when "000010" => bcdin <= "0000";
-					when "000100" => bcdin <= std_logic_vector(ala_mins1);
-					when "001000" => bcdin <= '0' & std_logic_vector(ala_mins10);
-					when "010000" => bcdin <= std_logic_vector(ala_hrs1);
-					when "100000" => bcdin <= '0' & '0' & std_logic_vector(ala_hrs10);
+					when "000010" => bcdin <= std_logic_vector(ala_mins1);
+					when "000100" => bcdin <= '0' & std_logic_vector(ala_mins10);
+					when "001000" => bcdin <= std_logic_vector(ala_hrs1);
+					when "010000" => bcdin <= '0' & '0' & std_logic_vector(ala_hrs10);
 					when others => bcdin <= "0000";
 					end case;
 
 			else
 				-- Uhrzeit zeigen bei set_alarm = '0'
 					case counter is
-					when "000001" => bcdin <= std_logic_vector(tim_secs1);
-					when "000010" => bcdin <= '0' & std_logic_vector(tim_secs10);
-					when "000100" => bcdin <= std_logic_vector(tim_mins1);
-					when "001000" => bcdin <= '0' & std_logic_vector(tim_mins10);
-					when "010000" => bcdin <= std_logic_vector(tim_hrs1);
-					when "100000" => bcdin <= '0' & '0' & std_logic_vector(tim_hrs10);
+					when "100000" => bcdin <= std_logic_vector(tim_secs1);
+					when "000001" => bcdin <= '0' & std_logic_vector(tim_secs10);
+					when "000010" => bcdin <= std_logic_vector(tim_mins1);
+					when "000100" => bcdin <= '0' & std_logic_vector(tim_mins10);
+					when "001000" => bcdin <= std_logic_vector(tim_hrs1);
+					when "010000" => bcdin <= '0' & '0' & std_logic_vector(tim_hrs10);
 					when others => bcdin <= "0000";
 					end case;
 			end if;
