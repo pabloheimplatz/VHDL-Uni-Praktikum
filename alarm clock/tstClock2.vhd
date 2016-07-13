@@ -14,8 +14,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity tstClock2 is
-generic (	tClk	: time		:= 1 us; -- 1Mhz
-          tClk2 : time    := 500 ms);	-- 
+generic (	tClk	: time		:= 1 us); -- 1Mhz
+         -- tClk2 : time    := 500 ms);	-- 
 end entity tstClock2;
 
 
@@ -60,8 +60,23 @@ begin
   
   reset <= '0', '1' after tClk/4;
      
+stiP: process is
+  begin
+	alarm_tog <= '0';
+	set_hrs <= '0';
+	set_mins <= '0';
   set_time <= '0';
   set_alarm <= '0';
+  wait for 2 sec;
+  set_time <= '1';
+  wait for 2 sec;
+  set_mins <= '1', '0' after 1 sec; 
+	wait for 1 sec;
+  set_hrs <= '1', '0' after 1 sec;
+	wait for 2 sec;
+	set_time <= '0';
+  wait;
+  end process stiP;
 
   -- Clock
   clck: process is
@@ -71,13 +86,9 @@ begin
   end process clck;
 
   -- Testfall - Uhr stellen
-  test1: process is
-  begin
-    set_time <= '1';
-    set_mins <= '1', '0' after tClk2; 
-    set_hrs <= '1', '0' after tClk2;
-    set_time <= '0';
-  end process test1; 
+--  test1: process is
+--  begin
+--  end process test1; 
 
 end architecture stimuli;
 
