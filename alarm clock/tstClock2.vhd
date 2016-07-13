@@ -75,6 +75,14 @@ stiP: process is
   set_hrs <= '1', '0' after 1 sec;
 	wait for 2 sec;
 	set_time <= '0';
+    -- alarm test
+  set_alarm <= '1';
+  set_mins <= '1', '0' after 1 sec; 
+  wait for 1 sec;
+  set_hrs <= '1', '0' after 1 sec;
+  wait for 1 sec;
+  set_alarm <= '0'; -- Alarm gestellt
+  alarm_tog <= '1'; -- Alarm Ein
   wait;
   end process stiP;
 
@@ -84,11 +92,6 @@ stiP: process is
     clk1us <= '1', '0' after tClk/2;
     wait for tClk;
   end process clck;
-
-  -- Testfall - Uhr stellen
---  test1: process is
---  begin
---  end process test1; 
 
 end architecture stimuli;
 
