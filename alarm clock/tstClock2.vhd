@@ -14,8 +14,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity tstClock2 is
-generic (	tClk	: time		:= 1 us; -- 1Mhz
-          tClk2 : time    := 500 ms);	-- 
+generic (	tClk	: time		:= 1 us); -- 1Mhz 
 end entity tstClock2;
 
 
@@ -74,8 +73,8 @@ begin
   test1: process is
   begin
     set_time <= '1';
-    set_mins <= '1', '0' after tClk2; 
-    set_hrs <= '1', '0' after tClk2;
+    set_mins <= '1', '0' after tClk*50000; 
+    set_hrs <= '1', '0' after tClk*50000;
     set_time <= '0';
   end process test1; 
 
