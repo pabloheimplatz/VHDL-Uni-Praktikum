@@ -86,7 +86,7 @@ stiP: process is
   wait for 500 ms;
   alarm_tog <= '0';
   wait for 5 sec;
-  alarm_tog <= '1'
+  alarm_tog <= '1';
   wait for 500 ms;
   alarm_tog <= '0';
   wait;
