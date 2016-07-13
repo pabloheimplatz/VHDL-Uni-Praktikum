@@ -70,11 +70,12 @@ begin
   end process clck;
 
   -- Testfall - Uhr stellen
-  --test1: process is
-  --begin
-    --if reset = '0' then
-  --  end if;
-  --end process test1; 
+  test1: process is
+  begin
+    set_time <= '1'
+    set_mins <= '1', '0' after tClk 
+
+  end process test1; 
 
 end architecture stimuli;
 
