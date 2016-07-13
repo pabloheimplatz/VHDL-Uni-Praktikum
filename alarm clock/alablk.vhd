@@ -33,7 +33,11 @@ architecture alarm of alablk is
 				if rising_edge(clk500ms) then
 					if set_hrs = '1' then
 						ala_hrs1 <=  "0000";
-						ala_hrs10 <= ala_hrs10 + 1;
+						ala_hrs1 <= ala_hrs1 + 1;
+						if ala_hrs1 = 9 then
+							ala_hrs10 <= ala_hrs10 + 1;
+							ala_hrs1 <= "0000";
+						end if;
 					elsif ala_hrs10 = 1 and ala_hrs1 = 2 then
 						ala_hrs10 <=  "00";
 						ala_hrs1 <= "0000";
